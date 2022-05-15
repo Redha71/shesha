@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileConteroller;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix'=>'admin','middleware'=>['admin:admin']],function(){
     Route::get('/login',[AdminController::class,'loginForm']);
     Route::post('/login',[AdminController::class,'store'])->name('admin.login');
+    
 });
 
 Route::middleware(['auth:sanctum,admin',config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/admin/dashboard', function () { return view('admin.index');})->name('dashboard');
+    Route::get('admin/dashboard', function () { return view('admin.index');})->name('dashboard');
     //Admin All Routes
     Route::get('/admin/logout',[AdminController::class,'destroy'])->name('admin.logout');
     //Admin Profile
@@ -56,3 +58,11 @@ Route::middleware(['auth:sanctum,web',config('jetstream.auth_session'),'verified
 Route::get('/',[IndexController::class,'index'])->name('home');
 
 
+// Admin Brand All Routes
+Route::prefix('brand')->group(function(){
+    Route::get('/view',[BrandController::class,'brandView'])->name('all.brand');
+    Route::post('/store',[BrandController::class,'brandStore'])->name('brand.store');
+    Route::get('/edit/{id}',[BrandController::class,'brandEdit'])->name('brand.edit');
+    Route::post('/update',[BrandController::class,'brandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}',[BrandController::class,'brandDelete'])->name('brand.delete');
+});
