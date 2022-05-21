@@ -3,6 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileConteroller;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ChildSubCategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -66,3 +69,28 @@ Route::prefix('brand')->group(function(){
     Route::post('/update',[BrandController::class,'brandUpdate'])->name('brand.update');
     Route::get('/delete/{id}',[BrandController::class,'brandDelete'])->name('brand.delete');
 });
+//Admin Category All route
+Route::prefix('category')->group(function(){
+    Route::get('/view',[CategoryController::class,'categoryView'])->name('all.category');
+    Route::post('/store',[CategoryController::class,'categoryStore'])->name('category.store');
+    Route::get('/edit/{id}',[CategoryController::class,'categoryEdit'])->name('category.edit');
+    Route::post('/update',[CategoryController::class,'categoryUpdate'])->name('category.update');
+    Route::get('/delete/{id}',[CategoryController::class,'categoryDelete'])->name('category.delete');
+    // sub Category
+    Route::get('/sub/view',[SubCategoryController::class,'subcategoryView'])->name('all.subcategory');
+    Route::post('/sub/store',[SubCategoryController::class,'subcategoryStore'])->name('subcategory.store');
+    Route::get('/sub/edit/{id}',[SubCategoryController::class,'subcategoryEdit'])->name('subcategory.edit');
+    Route::post('/sub/update',[SubCategoryController::class,'subcategoryUpdate'])->name('subcategory.update');
+    Route::get('/sub/delete/{id}',[SubCategoryController::class,'subcategoryDelete'])->name('subcategory.delete');
+// Child sub Category
+Route::get('child/sub/view',[ChildSubCategoryController::class,'childsubcategoryView'])->name('all.childsubcategory');
+Route::post('child/sub/store',[ChildSubCategoryController::class,'childsubcategoryStore'])->name('childsubcategory.store');
+Route::get('child/sub/edit/{id}',[ChildSubCategoryController::class,'childsubcategoryEdit'])->name('childsubcategory.edit');
+Route::post('child/sub/update',[ChildSubCategoryController::class,'childsubcategoryUpdate'])->name('childsubcategory.update');
+Route::get('child/sub/delete/{id}',[ChildSubCategoryController::class,'childsubcategoryDelete'])->name('childsubcategory.delete');
+
+
+Route::get('/subcategory/ajax/{category_id}',[SubCategoryController::class,'getSubCategory']);
+});
+
+
