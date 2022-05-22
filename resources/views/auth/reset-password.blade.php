@@ -28,12 +28,12 @@
                                     name="email" :value="old('email', $request->email)" required autofocus>
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+                                <label class="info-title" for="exampleInputEmail1">New Password <span>*</span></label>
                                 <input type="password" name="password" id="password" class="form-control unicase-form-control text-input"
                                 required autocomplete="new-password">
                             </div>
                             <div class="form-group">
-                                <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+                                <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
                                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control unicase-form-control text-input"
                                 required autocomplete="new-password">
                             </div>

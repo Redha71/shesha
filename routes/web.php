@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AdminProfileConteroller;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildSubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
@@ -91,6 +92,11 @@ Route::get('child/sub/delete/{id}',[ChildSubCategoryController::class,'childsubc
 
 
 Route::get('/subcategory/ajax/{category_id}',[SubCategoryController::class,'getSubCategory']);
+});
+
+// Admin Brand All Routes
+Route::prefix('product')->group(function(){
+    Route::get('/add',[ProductController::class,'addProduct'])->name('add-product');
 });
 
 

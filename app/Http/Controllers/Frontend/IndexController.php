@@ -17,7 +17,7 @@ class IndexController extends Controller
     }
     public function userLogout()
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
         return Redirect()->route('home');
     }
     public function userProfile()
